@@ -1,40 +1,27 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
-      : []),
   ],
-  resolve: {
-    alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-    },
-  },
-  root: path.resolve(import.meta.dirname, "client"),
+  // 1. 빌드 루트 폴더를 'client'로 지정합니다. 
+  //    (index.html과 index.ts가 client 폴더 안에 있어야 합니다.)
+  root: "client", 
+
+  // 2. 배포 결과물 폴더 이름을 'dist'로 지정합니다. (Netlify 표준)
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: "dist", 
     emptyOutDir: true,
   },
-  server: {
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
+ssr: {
+    // 빌드 시 Express나 Firebase를 외부 모듈로 처리하여 충돌을 방지합니다.
+    noExternal: ['express', 'firebase', 'http'] 
+  },
+  // 3. 별칭(alias) 설정을 단순화합니다.
+  resolve: {
+    alias: {
+      "@": "/client/src", // 필요하다면 이 경로는 다시 조정될 수 있습니다.
     },
   },
 });
