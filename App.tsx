@@ -1,5 +1,7 @@
+// App.tsx
 import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
+// ✅ 경로 수정: lib 폴더가 src 폴더 안에 있다고 가정하고 경로를 수정합니다.
+import { queryClient } from "./src/lib/queryClient"; 
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
