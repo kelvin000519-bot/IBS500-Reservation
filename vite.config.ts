@@ -5,20 +5,20 @@ export default defineConfig({
   plugins: [
     react(),
   ],
-  // 1. 빌드 루트 폴더를 'client'로 지정합니다. (현재 파일 위치와 일치)
-  root: "client", 
+  
+  // 1. **제거:** 'client' 폴더를 빌드 루트로 지정하는 설정을 제거합니다.
+  //    (파일이 루트에 있으므로, Vite는 이제 루트를 기준으로 파일을 찾습니다.)
+  // root: "client",  ⬅️ 이 줄을 삭제합니다.
 
-  // 2. 배포 결과물 폴더 이름을 'dist'로 지정합니다.
   build: {
     // Netlify가 최종적으로 배포할 빌드 결과물을 저장할 위치를 명시합니다.
-    // **중요:** root가 'client'이므로, outDir은 'client'를 기준으로 상대 경로가 됩니다.
-    // Netlify는 repo 루트의 'dist'를 기대하므로, outDir을 프로젝트 루트의 'dist'로 변경합니다.
-    outDir: "../dist",  // ⬅️ outDir을 루트 폴더의 'dist'로 변경!
+    outDir: "dist",  // ⬅️ outDir을 루트 폴더의 'dist'로 되돌립니다.
     emptyOutDir: true,
     
-    // **추가:** 엔트리 포인트(진입점)를 명시적으로 .tsx 파일로 지정하여 빌드 오류 방지
+    // 2. **추가:** 엔트리 포인트(진입점)를 명시적으로 .tsx 파일로 지정합니다.
     rollupOptions: {
-        input: 'client/index.tsx', // ⬅️ .tsx 파일을 강제 지정합니다.
+        // 파일이 루트에 있으므로, 경로는 `./index.tsx`입니다.
+        input: './index.tsx', // ⬅️ 경로를 최상위 루트 기준으로 변경합니다.
     },
   },
 
@@ -30,7 +30,8 @@ export default defineConfig({
   // 3. 별칭(alias) 설정을 단순화합니다.
   resolve: {
     alias: {
-      "@": "/client/src",
+      // 이제 루트가 client가 아니므로, alias 경로도 루트 기준으로 수정해야 합니다.
+      "@": "/src", 
     },
   },
 });
