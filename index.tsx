@@ -1,12 +1,14 @@
 // index.tsx (전체 코드 복사/붙여넣기)
 
 // 1. CSS 파일 Import 추가
-import './src/index.css'; // ⬅️ CSS 경로 확인 (만약 CSS 파일 이름이 다르면 수정해야 함)
+// CSS 파일이 src 폴더 바로 아래에 있다고 가정합니다.
+import './src/index.css'; 
 
 // --- 2. React 및 App 컴포넌트 Import ---
 import React from 'react'; 
+// ✅ createRoot 함수를 react-dom/client에서 명시적으로 가져왔는지 확인합니다.
 import { createRoot } from 'react-dom/client'; 
-import App from './src/App'; // ⬅️ App.tsx 경로 수정 (App.tsx는 src 폴더 안에 있음)
+import App from './src/App'; 
 
 // Firebase 클라이언트 SDK Import (V9 모듈 방식)
 import { initializeApp } from "firebase/app";
