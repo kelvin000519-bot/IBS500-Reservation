@@ -1,19 +1,19 @@
 // App.tsx
 // -----------------------------------------------------------
-// ✅ 모든 import를 상대 경로(./src/...)로 최종 변환했습니다.
+// ✅ 모든 로컬 파일 경로에 확장자를 명시적으로 추가했습니다.
 // -----------------------------------------------------------
 import { Switch, Route } from "wouter";
-import { queryClient } from "./src/lib/queryClient"; 
+import { queryClient } from "./src/lib/queryClient.ts"; // ⬅️ .ts 확장자 추가
 import { QueryClientProvider } from "@tanstack/react-query";
 
-// ⬇️ @/ 경로를 './src/'로 수정
-import { Toaster } from "./src/components/ui/toaster"; 
-import { TooltipProvider } from "./src/components/ui/tooltip";
-import { useAuth } from "./src/hooks/useAuth";
-import NotFound from "./src/pages/not-found";
-import Landing from "./src/pages/Landing";
-import Home from "./src/pages/Home";
-import Admin from "./src/pages/Admin";
+// ⬇️ '@/' 경로를 './src/'로 바꾸고 확장자(.tsx)를 추가했습니다.
+import { Toaster } from "./src/components/ui/toaster.tsx"; 
+import { TooltipProvider } from "./src/components/ui/tooltip.tsx";
+import { useAuth } from "./src/hooks/useAuth.ts"; // ⬅️ .ts 확장자 추가 (훅/유틸리티는 보통 .ts)
+import NotFound from "./src/pages/not-found.tsx"; // ⬅️ .tsx 확장자 추가 (페이지 컴포넌트는 보통 .tsx)
+import Landing from "./src/pages/Landing.tsx";
+import Home from "./src/pages/Home.tsx";
+import Admin from "./src/pages/Admin.tsx";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
