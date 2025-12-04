@@ -1,12 +1,12 @@
 // index.tsx (전체 코드 복사/붙여넣기)
 
-// ✅ 1. CSS 파일 Import 추가 (src 폴더 바로 아래에 index.css 파일이 있다고 가정)
-import './src/index.css'; 
+// 1. CSS 파일 Import 추가
+import './src/index.css'; // ⬅️ CSS 경로 확인 (만약 CSS 파일 이름이 다르면 수정해야 함)
 
-// --- 2. React 및 Firebase 클라이언트 Import ---
+// --- 2. React 및 App 컴포넌트 Import ---
 import React from 'react'; 
 import { createRoot } from 'react-dom/client'; 
-import App from './src/App'; 
+import App from './src/App'; // ⬅️ App.tsx 경로 수정 (App.tsx는 src 폴더 안에 있음)
 
 // Firebase 클라이언트 SDK Import (V9 모듈 방식)
 import { initializeApp } from "firebase/app";
@@ -14,7 +14,6 @@ import { getFirestore } from "firebase/firestore";
 
 // --- 3. Firebase 설정 (고객님의 실제 키 값 사용) ---
 const firebaseConfig = {
-  // ... (Firebase 설정 코드는 그대로 유지)
   apiKey: "AIzaSyCG7V6dUYxjON_Qu9ldU_EXD6D3EKaYuRg",
   authDomain: "nmr-scheduler.firebaseapp.com",
   projectId: "nmr-scheduler",
