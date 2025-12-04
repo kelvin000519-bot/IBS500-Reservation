@@ -6,7 +6,7 @@ import './src/index.css';
 // --- 2. React 및 Firebase 클라이언트 Import ---
 import React from 'react'; 
 import { createRoot } from 'react-dom/client'; 
-import App from './App'; 
+import App from './src/App'; 
 
 // Firebase 클라이언트 SDK Import (V9 모듈 방식)
 import { initializeApp } from "firebase/app";
