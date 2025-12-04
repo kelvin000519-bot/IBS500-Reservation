@@ -104,8 +104,10 @@ npm run dev
 
 ## Recent Changes
 
-- 2024: Initial implementation
-  - 24시간 시간표 구현
-  - Replit Auth 통합
-  - 관리자 대시보드 구현
-  - 다크 모드 지원
+- December 2025: Full implementation complete
+  - 24시간 10분 단위 시간표 구현
+  - Replit Auth 통합 (OpenID Connect)
+  - 관리자 대시보드 및 사용자 승인 시스템
+  - 다크/라이트 모드 지원
+  - Zod를 통한 서버 측 유효성 검사 (30분 예약 제한, 10분 단위, 중복 검증)
+  - Material Design 3 / Ant Design 하이브리드 스타일
