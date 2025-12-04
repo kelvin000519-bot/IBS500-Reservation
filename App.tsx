@@ -1,15 +1,17 @@
 // App.tsx
+// -----------------------------------------------------------
+// ✅ 모든 로컬 파일 경로에 './src'를 명시적으로 추가했습니다.
+// -----------------------------------------------------------
 import { Switch, Route } from "wouter";
-// ✅ 경로 수정: lib 폴더가 src 폴더 안에 있다고 가정하고 경로를 수정합니다.
-import { queryClient } from "./src/lib/queryClient"; 
+import { queryClient } from "./src/lib/queryClient"; // ⬅️ 수정
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { useAuth } from "@/hooks/useAuth";
-import NotFound from "@/pages/not-found";
-import Landing from "@/pages/Landing";
-import Home from "@/pages/Home";
-import Admin from "@/pages/Admin";
+import { Toaster } from "./src/components/ui/toaster"; // ⬅️ 수정 (Tailwind/Shadcn UI 컴포넌트)
+import { TooltipProvider } from "./src/components/ui/tooltip"; // ⬅️ 수정
+import { useAuth } from "./src/hooks/useAuth"; // ⬅️ 수정
+import NotFound from "./src/pages/not-found"; // ⬅️ 수정
+import Landing from "./src/pages/Landing"; // ⬅️ 수정
+import Home from "./src/pages/Home"; // ⬅️ 수정
+import Admin from "./src/pages/Admin"; // ⬅️ 수정
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
