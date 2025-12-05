@@ -1,12 +1,9 @@
 // App.tsx (src 폴더 안에 있음)
-// -----------------------------------------------------------
-// ✅ App.tsx가 src 안에 있으므로, 경로는 src를 기준으로 상대적으로 짧아집니다.
-// -----------------------------------------------------------
+
 import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient.ts"; // ⬅️ "./src/" 제거
+import { queryClient } from "./lib/queryClient.ts"; 
 import { QueryClientProvider } from "@tanstack/react-query";
 
-// ⬇️ 모든 경로에서 './src/' 제거
 import { Toaster } from "./components/ui/toaster.tsx"; 
 import { TooltipProvider } from "./components/ui/tooltip.tsx";
 import { useAuth } from "./hooks/useAuth.ts";
@@ -16,21 +13,43 @@ import Home from "./pages/Home.tsx";
 import Admin from "./pages/Admin.tsx";
 
 function Router() {
-    // ... (Router 컴포넌트 내부 코드는 그대로 유지)
-    const { isAuthenticated, isLoading } = useAuth();
-    // ...
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center space-y-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto" />
+          <p className="text-muted-foreground">로딩 중...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Switch>
+      {!isAuthenticated ? (
+        <Route path="/" component={Landing} />
+      ) : (
+        <>
+          <Route path="/" component={Home} />
+          <Route path="/admin" component={Admin} />
+        </>
+      )}
+      <Route component={NotFound} />
+    </Switch>
+  );
 }
 
 function App() {
-    // ... (App 컴포넌트 내부 코드는 그대로 유지)
-    return (
-        <QueryClientProvider client={queryClient}>
-            <TooltipProvider>
-                <Toaster />
-                <Router />
-            </TooltipProvider>
-        </QueryClientProvider>
-    );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
